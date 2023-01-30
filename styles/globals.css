@@ -70,6 +70,7 @@
     --callout-border-rgb: 108, 108, 108;
     --card-rgb: 100, 100, 100;
     --card-border-rgb: 200, 200, 200;
+    --accent:#f0be4a;
   }
 }
 
@@ -84,7 +85,6 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -104,4 +104,35 @@ a {
   html {
     color-scheme: dark;
   }
+}
+.not-found {
+  text-align: center;
+  text-decoration: underline;
+}
+
+code {
+  color: #5c6e74;
+  direction: ltr;
+  font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+  font-size: 0.813rem;
+  hyphens: none;
+  line-height: 1.5;
+  tab-size: 4;
+  text-align: left;
+  text-shadow: none;
+  white-space: pre;
+  word-break: normal;
+  word-spacing: normal;
+}
+code {
+  background: rgb(221, 221, 221);
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  direction: ltr;
+  font-size: 0.813rem;
+  line-height: 1.5;
+  display: flex;
+  justify-content: flex-start;
 }

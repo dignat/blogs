@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+.post-title {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-family: Merriweather serif;
+    margin-top: 2rem;
+}
+.post-subtitle {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    display: block;
+    margin-bottom: 1.75rem;
+    margin-top: -1.75rem;
+}
+.post-subtitle:after{
+    background: var(--accent);
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 20px;
+    width: 60px;
+}
+.content p {
+    font-family: Merriweather serif;
+    font-size: 1.25rem;
+    padding-bottom: 1.25rem;
+    word-break: normal;
+    line-height: 1.625rem;
+}

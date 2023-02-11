@@ -1,6 +1,4 @@
 import React from "react";
-import type { Article } from "@/data/articles";
-import { useState } from "react";
 import articles from "@/data/articles";
 import Link from "next/link";
 import styles from '../styles/Home.module.css';

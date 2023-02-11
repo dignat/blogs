@@ -1,7 +1,6 @@
-import type { GetStaticProps, GetStaticPaths } from "next"
+import type { GetServerSideProps, GetStaticPaths } from "next"
 import type { Article } from "@/data/articles";
 import {useRouter} from 'next/router';
-import articles from "@/data/articles";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import ScrollToTop from "@/components/ScrollToTop";
@@ -12,18 +11,7 @@ type Props = {
 }
 const host = process.env.NEXT_PUBLIC_HOST;
 
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = articles.map((article: Article) => {
-        return {
-            params: {article: article.slug}
-        }
-    });
-    return {
-        paths,
-        fallback: false
-    }
-}
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string;
     const res = await fetch(`${host}/api/articles/${slug}`);
     const data = await res.json();

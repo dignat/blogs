@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.css';
 import { useState, useEffect } from "react";
 import Hamburger from "./Hamburger";
 import clsx from 'clsx';
-import MobileNav from "./MobileNav";
 import useDeviceSize from "./use-device-size";
 type Props = {
     children?: ReactNode

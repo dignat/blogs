@@ -4,12 +4,13 @@ import {useRouter} from 'next/router';
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import ScrollToTop from "@/components/ScrollToTop";
+import { useEffect } from "react";
 
 type Props = {
     article: Article,
     content: string
 }
-const host = process.env.NEXT_PUBLIC_HOST;
+const host = "https://blogs-black-one.vercel.app/";
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string;
@@ -26,6 +27,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     }
 
 }
+
 const Article = ({article, content}: Props) => {
     const router = useRouter();
     const date = new Date(article.created).toLocaleDateString('en-US', {
@@ -42,6 +44,11 @@ const Article = ({article, content}: Props) => {
         const readingResult = seconds > secondTreshold ? (minutes+1) : minutes;
         return readingResult;
     }
+
+    useEffect(() =>{
+        
+    })
+    
     return ( 
         <>
         <ScrollToTop scrollY={400}/>

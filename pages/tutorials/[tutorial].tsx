@@ -10,7 +10,7 @@ type Props = {
     content: string
 }
 
-const host = process.env.NEXT_PUBLIC_HOST;
+const host = "https://blogs-black-one.vercel.app/";
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string;

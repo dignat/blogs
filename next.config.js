@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://blogs-black-one.vercel.app/:path*',
+        destination: 'https://blogs-black-one.vercel.app/api/:path*',
       },
     ]
   },

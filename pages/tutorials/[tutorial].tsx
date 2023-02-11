@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const data = await res.json();
     const content = await getSinglePost(slug, '/tutorials');
     const renderHtml = await renderMarkdown(content.content);
-
+console.log(data, 'data')
     if (!data) {
         return {
             notFound: true

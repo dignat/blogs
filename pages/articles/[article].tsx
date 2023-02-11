@@ -1,22 +1,33 @@
-import type { GetServerSideProps, GetStaticPaths } from "next"
+import type { GetStaticProps, GetStaticPaths } from "next"
 import type { Article } from "@/data/articles";
 import {useRouter} from 'next/router';
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import ScrollToTop from "@/components/ScrollToTop";
-import { useEffect } from "react";
+import articles from "@/data/articles";
 
 type Props = {
     article: Article,
     content: string
 }
-const host = "https://blogs-black-one.vercel.app";
+export const getStaticPaths: GetStaticPaths = () => {
+    const paths = articles.map((article: Article) => {
+        return {
+            params: {article: article.slug}
+        }
+    });
+    return {
+        paths,
+        fallback: false
+    }
+}
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-    const slug = context.params?.['article'] as string;
-    const res = await fetch(`${host}/api/articles/${slug}`);
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+    const slugParam = context.params?.['article'] as string;
+    const res = await fetch(`https://blogs-black-one.vercel.app/api/articles/${slugParam}`);
     const data = await res.json();
-    const content = await (getSinglePost(slug, '/blogs'))
+    
+    const content = await (getSinglePost(slugParam, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);
 
     return {

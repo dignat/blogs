@@ -1,5 +1,6 @@
 import type { Tutorial } from "@/data/tutorials";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
+import tutorials from "@/data/tutorials";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import {useRouter} from 'next/router';
@@ -12,7 +13,19 @@ type Props = {
 
 const host = "https://blogs-black-one.vercel.app";
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getStaticPaths: GetStaticPaths = () => {
+    const paths = tutorials.map((tutorial: Tutorial) => {
+        return {
+            params: {tutorial: tutorial.slug}
+        }
+    });
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string;
     const res = await fetch(`${host}/api/articles/${slug}`);
     const data = await res.json();

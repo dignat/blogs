@@ -10,7 +10,7 @@ type Props = {
     article: Article,
     content: string
 }
-const host = "https://blogs-black-one.vercel.app/";
+const host = "https://blogs-black-one.vercel.app";
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string;

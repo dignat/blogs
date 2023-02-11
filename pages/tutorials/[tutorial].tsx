@@ -20,7 +20,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         props: {
             tutorial: slug,
             content: renderHtml
-        }
+        },
+        notFound: true
 
     }
 }

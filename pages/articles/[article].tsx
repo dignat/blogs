@@ -21,7 +21,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         props: {
            article: slug,
            content: renderHtml
-        }
+        },
+        notFound: true
     }
 
 }

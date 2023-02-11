@@ -1,5 +1,5 @@
 import React from "react";
-import type { GetStaticProps, GetStaticPaths } from "next"
+import type { GetServerSideProps } from "next"
 import type { Article } from "@/data/articles";
 import {useRouter} from 'next/router';
 import articles from "@/data/articles";
@@ -11,21 +11,8 @@ type Props = {
     article: string,
     content: string
 }
-const host = process.env.NEXT_PUBLIC_HOST;
 
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = articles.map((article: Article) => {
-        return {
-            params: {article: article.slug}
-        }
-    });
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string;
     const content = await (getSinglePost(slug, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);

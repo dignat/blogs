@@ -11,7 +11,7 @@ type Props = {
     content: string
 }
 
-const host = "https://blogs-black-one.vercel.app";
+const host = process.env.NEXT_PUBLIC_HOST;
 
 export const getStaticPaths: GetStaticPaths = () => {
     const paths = tutorials.map((tutorial: Tutorial) => {

@@ -21,12 +21,12 @@ export const getStaticPaths: GetStaticPaths = () => {
         fallback: false
     }
 }
+const host = process.env.NEXT_PUBLIC_HOST;
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const slugParam = context.params?.['article'] as string;
-    const res = await fetch(`https://blogs-black-one.vercel.app/api/articles/${slugParam}`);
+    const res = await fetch(`${host}/api/articles/${slugParam}`);
     const data = await res.json();
-    
     const content = await (getSinglePost(slugParam, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);
 

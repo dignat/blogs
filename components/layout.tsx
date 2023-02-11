@@ -36,7 +36,6 @@ console.log(openMenu, mobileMenu)
                 {!isDesktop && <Navbar isDesktop={isDesktop} hamburgerOpen={mobileMenu}/>}
                 </div>
             </div>
-
             <div className={styles['blog-main']}>
             { isDesktop && <Navbar isDesktop={isDesktop} hamburgerOpen={mobileMenu}/> }
             { children }

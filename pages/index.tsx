@@ -26,7 +26,7 @@ export default function Home() {
             </div>
             <div className={styles.socials}>
               <Link target="_blank" href="https://www.linkedin.com/in/denise-i-7872a128/">
-                <Image src="/linkedIn.svg" height="30" width="30" alt="linkedIn"/>
+                <Image src="/linkedin.svg" height="30" width="30" alt="linkedIn"/>
               </Link>
               <Link target="_blank" href="https://twitter.com/DeniseIgnatova">
                 <Image src="/twitter.svg" height="30" width="30" alt="twitter"/>

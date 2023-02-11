@@ -6,7 +6,6 @@ import Link from "next/link";
 import styles from '../styles/Home.module.css';
 
 const Articles = () => {
-
     return (
         <>
         <h1 className={styles.sectionTitle}>Articles</h1>

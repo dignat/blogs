@@ -1,6 +1,6 @@
 import React from "react";
 import type { Tutorial } from "@/data/tutorials";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import tutorials from "@/data/tutorials";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
@@ -12,7 +12,19 @@ type Props = {
     content: string
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getStaticPaths: GetStaticPaths = () => {
+    const paths = tutorials.map((tutorial: Tutorial) => {
+        return {
+            params: {tutorial: tutorial.slug}
+        }
+    });
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string;
     const content = await getSinglePost(slug, '/tutorials');
     const renderHtml = await renderMarkdown(content.content)

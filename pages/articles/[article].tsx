@@ -44,10 +44,6 @@ const Article = ({article, content}: Props) => {
         const readingResult = seconds > secondTreshold ? (minutes+1) : minutes;
         return readingResult;
     }
-
-    useEffect(() =>{
-        
-    })
     
     return ( 
         <>

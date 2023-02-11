@@ -1,5 +1,6 @@
+import React from "react";
 import type { Tutorial } from "@/data/tutorials";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetServerSideProps } from "next";
 import tutorials from "@/data/tutorials";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
@@ -13,19 +14,7 @@ type Props = {
 
 const host = process.env.NEXT_PUBLIC_HOST;
 
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = tutorials.map((tutorial: Tutorial) => {
-        return {
-            params: {tutorial: tutorial.slug}
-        }
-    });
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string;
     const res = await fetch(`${host}/api/articles/${slug}`);
     const data = await res.json();

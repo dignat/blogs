@@ -1,3 +1,4 @@
+import React from "react";
 import type { Article } from "@/data/articles";
 import { useState } from "react";
 import articles from "@/data/articles";

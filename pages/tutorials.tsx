@@ -1,5 +1,4 @@
-import { useState } from "react";
-import type { Tutorial } from "@/data/tutorials";
+import React from "react";
 import styles from '@/styles/Home.module.css';
 import tutorials from "@/data/tutorials";
 import Link from "next/link";

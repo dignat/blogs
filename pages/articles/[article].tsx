@@ -1,33 +1,23 @@
-import type { GetStaticProps, GetStaticPaths } from "next"
+import React from "react";
+import type { GetServerSideProps, GetStaticPaths } from "next"
 import type { Article } from "@/data/articles";
 import {useRouter} from 'next/router';
+import articles from "@/data/articles";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import ScrollToTop from "@/components/ScrollToTop";
-import articles from "@/data/articles";
 
 type Props = {
     article: Article,
     content: string
 }
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = articles.map((article: Article) => {
-        return {
-            params: {article: article.slug}
-        }
-    });
-    return {
-        paths,
-        fallback: false
-    }
-}
 const host = process.env.NEXT_PUBLIC_HOST;
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
-    const slugParam = context.params?.['article'] as string;
-    const res = await fetch(`${host}/api/articles/${slugParam}`);
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+    const slug = context.params?.['article'] as string;
+    const res = await fetch(`${host}/api/articles/${slug}`);
     const data = await res.json();
-    const content = await (getSinglePost(slugParam, '/blogs'))
+    const content = await (getSinglePost(slug, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);
 
     return {
@@ -38,7 +28,6 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     }
 
 }
-
 const Article = ({article, content}: Props) => {
     const router = useRouter();
     const date = new Date(article.created).toLocaleDateString('en-US', {
@@ -55,7 +44,6 @@ const Article = ({article, content}: Props) => {
         const readingResult = seconds > secondTreshold ? (minutes+1) : minutes;
         return readingResult;
     }
-    
     return ( 
         <>
         <ScrollToTop scrollY={400}/>

@@ -3,10 +3,12 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from "next/link"
+import LatestArticle from '@/components/LatestArticle';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
   return (
     <>
       <Head>
@@ -29,6 +31,9 @@ export default function Home() {
               <Link target="_blank" href="https://twitter.com/DeniseIgnatova">
                 <Image src="/twitter.svg" height="30" width="30" alt="twitter"/>
               </Link>
+              <Link target="_blank" href="https://github.com/dignat">
+                <Image src="/github.svg" height="30" width="30" alt="twitter"/>
+              </Link>
             </div>
           </div>
         </div>
@@ -41,9 +46,7 @@ export default function Home() {
         </p>
       </div>
         <h1 className={styles.sectionTitle}>Latest Articles</h1>
-        <div className={styles.card}>
-          <p>Here will be some cards with articles titles and etc....</p>
-        </div>
+        <LatestArticle/>
     </>
   )
 }

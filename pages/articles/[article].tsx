@@ -15,7 +15,7 @@ const host = process.env.NEXT_PUBLIC_HOST;
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string;
-    const res = await fetch(`${host}/api/articles/${slug}`);
+    const res = await fetch(`${host}/api/articles/${slug}/`);
     const data = await res.json();
     const content = await (getSinglePost(slug, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);

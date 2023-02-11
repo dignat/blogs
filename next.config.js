@@ -5,10 +5,10 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:3000/:path*'
-      }
+        destination: 'https://blogs-black-one.vercel.app/:path*',
+      },
     ]
-  }
+  },
 }
 
 module.exports = nextConfig

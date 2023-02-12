@@ -33,7 +33,7 @@ export async function loadTutorial (slug: string) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-    const slug = context.params?.['tutorial'] as string;
+    const slug = context.params?.['tutorial'] as string ?? '    ';
     const data = await loadTutorial(slug);
     const content = await getSinglePost(slug, '/tutorials');
     const renderHtml = await renderMarkdown(content.content)

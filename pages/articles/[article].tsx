@@ -33,7 +33,7 @@ export async function loadArticle (slug: string) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-    const slug = context.params?.['article'] as string;
+    const slug = context.params?.['article'] as string ?? '';
     const data = await loadArticle(slug);
     const content = await (getSinglePost(slug, '/blogs'))
     const renderHtml = await renderMarkdown(content.content);

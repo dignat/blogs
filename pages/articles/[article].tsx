@@ -9,7 +9,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 type Props = {
     article: Article,
-    content: string
+    content: string,
 }
 const host = process.env.NEXT_PUBLIC_HOST;
 
@@ -22,18 +22,23 @@ export async function loadArticle (slug: string) {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-    const slug = context.params?.['article'] as string ?? '';
-    const data = await loadArticle(slug);
-    const content = await (getSinglePost(slug, '/blogs'))
-    const renderHtml = await renderMarkdown(content.content);
+            const slug = context.params?.['article'] as string ?? '';
+            const data = await loadArticle(slug);
+            const content = await (getSinglePost(slug, '/blogs'))
+            const renderHtml = await renderMarkdown(content.content);
 
-    return {
-        props: {
-           article: data,
-           content: renderHtml
-        }
-    }
+            if (!data && !content) {
+                return {
+                    notFound: true
+                }
+            }
 
+            return {
+                props: {
+                article: data,
+                content: renderHtml,
+                }
+            }
 }
 const Article = ({article, content}: Props) => {
     const router = useRouter();

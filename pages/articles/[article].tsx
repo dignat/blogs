@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
             const data = await loadArticle(slug);
             const content = await (getSinglePost(slug, '/blogs'))
             const renderHtml = await renderMarkdown(content.content);
-
+            console.log(data);
             if (!data && !content) {
                 return {
                     notFound: true,

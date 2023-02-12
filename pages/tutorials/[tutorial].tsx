@@ -16,7 +16,7 @@ const host = process.env.NEXT_PUBLIC_HOST;
 
 
 export async function loadTutorial (slug: string) {
-    const res = await fetch(`${host}/api/articles/${slug}`);
+    const res = await window.fetch(`${host}/api/articles/${slug}`);
      const tutorial = await res.json();
 
      return tutorial;

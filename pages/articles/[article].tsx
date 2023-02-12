@@ -15,7 +15,7 @@ const host = process.env.NEXT_PUBLIC_HOST;
 
 
 export async function loadArticle (slug: string) {
-    const res = await fetch(`${host}/api/articles/${slug}`);
+    const res = await window.fetch(`${host}/api/articles/${slug}`);
      const article = await res.json();
 
      return article;

@@ -6,7 +6,7 @@ import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import {useRouter} from 'next/router';
 import ScrollToTop from "@/components/ScrollToTop";
-
+import axios from "axios";
 type Props = {
     tutorial: Tutorial,
     content: string
@@ -16,8 +16,8 @@ const host = process.env.NEXT_PUBLIC_HOST;
 
 
 export async function loadTutorial (slug: string) {
-    const res = await window.fetch(`${host}/api/articles/${slug}`);
-     const tutorial = await res.json();
+    const res = await axios.get(`${host}/api/articles/${slug}`);
+     const tutorial = await res.data;
 
      return tutorial;
 }

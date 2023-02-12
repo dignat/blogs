@@ -6,6 +6,7 @@ import articles from "@/data/articles";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
 import ScrollToTop from "@/components/ScrollToTop";
+import axios from "axios";
 
 type Props = {
     article: Article,
@@ -15,8 +16,8 @@ const host = process.env.NEXT_PUBLIC_HOST;
 
 
 export async function loadArticle (slug: string) {
-    const res = await window.fetch(`${host}/api/articles/${slug}`);
-     const article = await res.json();
+    const res = await axios.get(`${host}/api/articles/${slug}`);
+     const article = await res.data;
 
      return article;
 }
@@ -26,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
             const data = await loadArticle(slug);
             const content = await (getSinglePost(slug, '/blogs'))
             const renderHtml = await renderMarkdown(content.content);
-            console.log(data);
+         
             if (!data && !content) {
                 return {
                     notFound: true,

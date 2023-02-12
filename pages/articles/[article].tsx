@@ -29,7 +29,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
             if (!data && !content) {
                 return {
-                    notFound: true
+                    notFound: true,
+                    redirect: '/',
+                    permanent: false
                 }
             }
 

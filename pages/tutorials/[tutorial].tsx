@@ -8,7 +8,7 @@ import {useRouter} from 'next/router';
 import ScrollToTop from "@/components/ScrollToTop";
 
 type Props = {
-    tutorial: string,
+    tutorial: Tutorial,
     content: string
 }
 
@@ -25,15 +25,21 @@ export const getStaticPaths: GetStaticPaths = () => {
     }
 }
 
+export async function loadTutorial (slug: string) {
+    const res = await fetch(`${host}/api/articles/${slug}`);
+     const tutorial = await res.json();
+
+     return tutorial;
+}
+
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string;
-    //const res = await fetch(`${host}/api/articles/${slug}`);
-    //const data = await res.json();
+    const data = await loadTutorial(slug);
     const content = await getSinglePost(slug, '/tutorials');
     const renderHtml = await renderMarkdown(content.content)
     return {
         props: {
-            tutorial: slug,
+            tutorial: data,
             content: renderHtml
         }
 
@@ -41,14 +47,12 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 }
 const Tutorial = ({tutorial, content}: Props) => {
     const router = useRouter();
-    const tutorialData = tutorials.find(({slug}) => slug === tutorial);
-    if (!tutorialData) return;
     return (
         <>
         <ScrollToTop scrollY={400}/>
         <div className={styles.content}>
             <span className={styles['meta-span-link']} onClick={() => router.push('/tutorials')}>&#x2190; Go back to Tutorials</span>
-            <h1  className={styles['post-title']}>{tutorialData.title}</h1>
+            <h1  className={styles['post-title']}>{tutorial.title}</h1>
             <div className={styles.content} dangerouslySetInnerHTML={{__html: content }}></div>
         </div>
         

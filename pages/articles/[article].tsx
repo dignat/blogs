@@ -30,8 +30,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
             if (!data && !content) {
                 return {
                     notFound: true,
-                    redirect: '/',
-                    permanent: false
+                    redirect: {
+                        destination: '/',
+                        permanent: false
+                    }
                 }
             }
 

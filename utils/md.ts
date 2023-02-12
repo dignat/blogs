@@ -5,7 +5,7 @@ import { remark } from "remark";
 import html from 'remark-html';
 
 export const getPath = (folder: string) => {
-    return path.join(process.cwd(), `/${process.env.NEXT_PUBLIC_MD}/${folder}`);
+    return path.join(process.cwd(), `/data/${folder}`);
 }
 
 export const getFileContent = (filename: string, folder: string) => {

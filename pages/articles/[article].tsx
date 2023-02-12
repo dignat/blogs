@@ -1,5 +1,5 @@
 import React from "react";
-import type { GetStaticProps, GetStaticPaths } from "next"
+import type { GetServerSideProps, GetStaticPaths } from "next"
 import type { Article } from "@/data/articles";
 import {useRouter} from 'next/router';
 import articles from "@/data/articles";
@@ -13,17 +13,6 @@ type Props = {
 }
 const host = process.env.NEXT_PUBLIC_HOST;
 
-export const getStaticPaths: GetStaticPaths = () => {
-    const paths = articles.map((article: Article) => {
-        return {
-            params: {article: article.slug}
-        }
-    });
-    return {
-        paths,
-        fallback: false
-    }
-}
 
 export async function loadArticle (slug: string) {
     const res = await fetch(`${host}/api/articles/${slug}`);
@@ -32,7 +21,7 @@ export async function loadArticle (slug: string) {
      return article;
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     const slug = context.params?.['article'] as string ?? '';
     const data = await loadArticle(slug);
     const content = await (getSinglePost(slug, '/blogs'))

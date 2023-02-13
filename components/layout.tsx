@@ -9,7 +9,7 @@ import useDeviceSize from "./use-device-size";
 type Props = {
     children?: ReactNode
 }
-const Layout = ( { children}: Props) => {
+const Layout = ( { children }: Props) => {
     const [mobileMenu, setMobileMenu] = useState(false);
     const [openMenu, setOpenMenu] = useState(true);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import type { Tutorial } from "@/data/tutorials";
-import { GetStaticPaths, GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import tutorials from "@/data/tutorials";
 import { getSinglePost, renderMarkdown } from "@/utils/md";
 import styles from '@/styles/Article.module.css';
@@ -14,6 +14,18 @@ type Props = {
 
 const host = process.env.NEXT_PUBLIC_HOST;
 
+export const getStaticPaths: GetStaticPaths = () => {
+    const paths = tutorials.map((tutorial: Tutorial) => {
+        return {
+            params: {tutorial: tutorial.slug}
+        }
+    });
+    return {
+        paths,
+        fallback: false
+    }
+}
+
 
 export async function loadTutorial (slug: string) {
     const res = await axios.get(`${host}/api/articles/${slug}`);
@@ -22,14 +34,18 @@ export async function loadTutorial (slug: string) {
      return tutorial;
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const slug = context.params?.['tutorial'] as string ?? '    ';
     const data = await loadTutorial(slug);
     const content = await getSinglePost(slug, '/tutorials');
     const renderHtml = await renderMarkdown(content.content);
     if (!data && !content) 
     return {
-        notFound: true
+        notFound: true,
+        redirect: {
+            destination: '/',
+            permanent: false
+        }
     }
     return {
         props: {

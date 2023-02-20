@@ -9,8 +9,9 @@ const Articles = () => {
         <h1 className={styles.sectionTitle}>Articles</h1>
         <div>
             {articles.map(({id, title, created, shortContent, slug}) => (
-                <div key={id} className={styles.card}>
-                <Link href={`/articles/${slug}`}>
+                <Link href={`/articles/${slug}`} key={id}>
+                <div className={styles.card}>
+                
                     <h3>{title}</h3>
                     <small>{new Date(created).toLocaleDateString('en-US', {
                         day: 'numeric',
@@ -19,8 +20,8 @@ const Articles = () => {
                     })}</small>
                     <div className={styles.divider}></div>
                     <p>{shortContent}</p>
-                </Link>
                 </div>
+                </Link>
             ))}
         </div>
 

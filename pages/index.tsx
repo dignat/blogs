@@ -25,14 +25,14 @@ export default function Home() {
               <Image src="/circle.jpg" width="60" height="60" alt="me"/>
             </div>
             <div className={styles.socials}>
-              <Link target="_blank" href="https://www.linkedin.com/in/denise-i-7872a128/">
+              <Link target="_blank" href="https://www.linkedin.com/in/denise-ignatova/">
                 <Image src="/linkedin.svg" height="30" width="30" alt="linkedIn"/>
               </Link>
               <Link target="_blank" href="https://twitter.com/DeniseIgnatova">
-                <Image src="/twitter.svg" height="30" width="30" alt="twitter"/>
+                <Image src="/circle_twiiter.svg" height="30" width="30" alt="twitter"/>
               </Link>
-              <Link target="_blank" href="https://github.com/dignat">
-                <Image src="/github.svg" height="30" width="30" alt="twitter"/>
+              <Link target="_blank" href="https://stackoverflow.com/users/6244213/denise-ignatova">
+                <Image src="/circle_stackoverflow_icon.svg" height="30" width="30" alt="stackoverflow"/>
               </Link>
             </div>
           </div>

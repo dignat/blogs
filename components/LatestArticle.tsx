@@ -8,8 +8,9 @@ export default function LatestArticle() {
   return (
         <>
         {latestArticles.map(({id, title, created, shortContent, slug}) => (
-            <div key={id} className={styles.card}>
-            <Link href={`/articles/${slug}`}>
+            
+            <Link href={`/articles/${slug}`} key={id}>
+                <div key={id} className={styles.card}>
                 <h3>{title}</h3>
                 <small>{new Date(created).toLocaleDateString('en-US', {
                     day: 'numeric',
@@ -18,8 +19,8 @@ export default function LatestArticle() {
                 })}</small>
                 <div className={styles.divider}></div>
                 <p>{shortContent}</p>
+                </div>
             </Link>
-            </div>
         ))}
         
         </>

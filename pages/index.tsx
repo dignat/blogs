@@ -28,7 +28,7 @@ export default function Home() {
               <Link target="_blank" href="https://www.linkedin.com/in/denise-ignatova/">
                 <Image src="/linkedin.svg" height="30" width="30" alt="linkedIn"/>
               </Link>
-              <Link target="_blank" href="https://twitter.com/DeniseIgnatova">
+              <Link target="_blank" href="https://x.com/IgnatovaDenise">
                 <Image src="/circle_twiiter.svg" height="30" width="30" alt="twitter"/>
               </Link>
               <Link target="_blank" href="https://stackoverflow.com/users/6244213/denise-ignatova">

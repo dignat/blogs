@@ -1,5 +1,6 @@
 import React from "react";
 import articles from "@/data/articles";
+import Search from "@/components/Search";
 import Link from "next/link";
 import styles from '../styles/Home.module.css';
 
@@ -8,6 +9,7 @@ const Articles = () => {
         <>
         <h1 className={styles.sectionTitle}>Articles</h1>
         <div>
+            <Search placeholder="Search article"/>
             {articles.map(({id, title, created, shortContent, slug}) => (
                 <Link href={`/articles/${slug}`} key={id}>
                 <div className={styles.card}>

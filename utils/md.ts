@@ -27,7 +27,7 @@ export const getAllPosts = (folder: string) => {
         frontmatter: data,
         slug: slug
        }
-    })
+    });
 }
 
 export const getSinglePost = async (slug: string, folder:string) => {

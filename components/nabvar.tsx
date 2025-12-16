@@ -2,11 +2,14 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+
 type Props = {
     isDesktop: boolean,
     hamburgerOpen: boolean
 }
 const Navbar = ({isDesktop, hamburgerOpen}: Props) => {
+    const pathname = usePathname();
     const createNavigationClassName = clsx({
         [styles.nav]: isDesktop,
         [styles['nav--mobile']]: !isDesktop,

@@ -453,22 +453,22 @@
   font-family:'Lato', sans-serif;
   border: 0;
   color: #2f2f2f;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
 }
 .search input[type="search"] {
-  outline: 0; 
+  outline: 0;
   width: 100%;
   background: #fff;
   padding: 0 1.6rem;
   border-radius:.7rem;
-  appearance: none; 
+  appearance: none;
   transition: all .3s cubic-bezier(0, 0, 0.43, 1.49);
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
 }
 .search button {
-  display: none; 
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -493,5 +493,61 @@
   width: 1px;
   overflow: hidden;
 }
+.article-search {
+  padding-bottom: 2rem;
+}
 
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.paginationButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  color: rgb(var(--foreground-rgb));
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: rgba(var(--card-rgb), 0.2);
+  border: 1px solid rgba(var(--card-border-rgb), 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(var(--card-border-rgb), 0.1);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginationInfo {
+  color: rgb(var(--foreground-rgb));
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Mobile pagination adjustments */
+@media (max-width: 700px) {
+  .paginationContainer {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .paginationButton {
+    width: 100%;
+    padding: 0.875rem 1rem;
+  }
+}
 
